@@ -49,13 +49,6 @@
 #     set -g theme_project_dir_length 1
 #     set -g theme_newline_cursor yes
 
-set -g theme_display_date no
-set -g theme_nerd_fonts yes
-set -g theme_display_git_master_branch yes
-set -g theme_nerd_fonts yes
-set -g theme_display_nix yes
-set -g theme_newline_cursor yes
-
 # ==============================
 # Helper methods
 # ==============================
