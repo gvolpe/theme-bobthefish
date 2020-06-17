@@ -49,6 +49,12 @@
 #     set -g theme_project_dir_length 1
 #     set -g theme_newline_cursor yes
 
+set -g theme_display_date no
+set -g theme_nerd_fonts yes
+set -g theme_display_git_master_branch yes
+set -g theme_nerd_fonts yes
+set -g theme_display_nix yes
+set -g theme_newline_cursor yes
 
 # ==============================
 # Helper methods
@@ -401,6 +407,9 @@ function __bobthefish_finish_segments -S -d 'Close open prompt segments'
     else if [ "$theme_newline_cursor" = 'clean' ]
         echo -ens "\n"
     end
+
+    set_color 9B4BAB
+    echo -ns $haskell_glyph ' '
 
     set_color normal
     set __bobthefish_current_bg
@@ -864,12 +873,14 @@ function __bobthefish_prompt_nvm -S -d 'Display current node version through NVM
     set_color normal
 end
 
-function __bobthefish_prompt_nix -S -d 'Display current nix environment'
-    [ "$theme_display_nix" = 'no' -o -z "$IN_NIX_SHELL" ]
-    and return
-
-    __bobthefish_start_segment $color_nix
-    echo -ns $nix_glyph $IN_NIX_SHELL ' '
+function __bobthefish_prompt_lang -S -d 'Display current language environment'
+    if test \( -e shell.nix \) -a \( -e .envrc \)
+        __bobthefish_start_segment $color_nix
+        echo -ns $nix_glyph ' nix '
+    else if test \( -e build.sbt \) -o \( -e build.sc \)
+        __bobthefish_start_segment $color_nix
+        echo -ns $scala_glyph 'scala '
+    end
 
     set_color normal
 end
@@ -1071,7 +1082,7 @@ function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
     __bobthefish_prompt_k8s_context
 
     # Virtual environments
-    __bobthefish_prompt_nix
+    __bobthefish_prompt_lang
     __bobthefish_prompt_desk
     __bobthefish_prompt_rubies
     __bobthefish_prompt_virtualfish

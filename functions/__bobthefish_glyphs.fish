@@ -69,6 +69,12 @@ function __bobthefish_glyphs -S -d 'Define glyphs used by bobthefish'
     set go_glyph         \uE626 ' '
     set node_glyph       \uE718 ' '
 
+    set tux_glyph        \uF31A ' '
+    set haskell_glyph    \uE61F ' '
+    set scala_glyph      \uE737 ' '
+    set lambda_glyph     \uFB26 ' '
+    set vim_glyph        \uE7C5 ' '
+
     set vagrant_running_glyph  \uF431 # ↑ 'running'
     set vagrant_poweroff_glyph \uF433 # ↓ 'poweroff'
     set vagrant_aborted_glyph  \uF468 # ✕ 'aborted'
